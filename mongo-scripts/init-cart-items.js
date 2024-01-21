@@ -16,7 +16,7 @@ db.items.insertMany([
     },
     {
         name: "D",
-        quantity: ,
+        quantity: 1,
         price: 20.0
     },
     {
