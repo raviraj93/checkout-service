@@ -1,7 +1,7 @@
 db.items.insertMany([
     {
         name: "A",
-        quantity: 2,
+        quantity: 1,
         price: 40.0
     },
     {
@@ -11,12 +11,12 @@ db.items.insertMany([
     },
     {
         name: "C",
-        quantity: 3,
+        quantity: 1,
         price: 25.0
     },
     {
         name: "D",
-        quantity: 5,
+        quantity: ,
         price: 20.0
     },
     {
