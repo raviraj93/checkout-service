@@ -19,6 +19,8 @@ public class PricingRuleMapper {
     private RuleConfiguration convertToEntity(PricingRuleEntity pricingRuleEntity) {
         return new RuleConfiguration(pricingRuleEntity.getName(),
                 pricingRuleEntity.getItemName(),
+                pricingRuleEntity.getUnitPrice(),
+                pricingRuleEntity.getQuantity(),
                 pricingRuleEntity.getSpecialQuantity(),
                 pricingRuleEntity.getSpecialPrice(),
                 pricingRuleEntity.getDiscountPercentage(),

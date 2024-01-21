@@ -1,5 +1,6 @@
 package com.idealo.pricing;
 
+import com.idealo.config.DateProviderImpl;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Component;
@@ -23,9 +24,13 @@ public class PricingRuleProvider {
     }
     public PricingRule createPricingRule(RuleConfiguration rule) {
         return switch (rule.getName()) {
-            case "QuantityDiscountRule" -> new SpecialPricingRule(rule.getSpecialQuantity(), rule.getSpecialPrice());
-            case "SpecialDatePricingRule" ->
-                    new SpecialDatePricingRule(rule.getSpecialPrice(), rule.getDiscountPercentage(), rule.getSpecialDates());
+
+            case "QuantityDiscountRule" -> new QuantityDiscountRule(rule.getUnitPrice(),
+                    rule.getSpecialQuantity(), rule.getSpecialPrice(), rule.getQuantity());
+
+            case "SpecialDatePricingRule" -> new SpecialDatePricingRule(rule.getSpecialPrice(),
+                    rule.getDiscountPercentage(), rule.getSpecialDates(), rule.getQuantity(), new DateProviderImpl());
+
             default -> new UnitPricingRule();
         };
     }

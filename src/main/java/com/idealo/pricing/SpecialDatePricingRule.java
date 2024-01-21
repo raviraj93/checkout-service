@@ -1,5 +1,6 @@
 package com.idealo.pricing;
 
+import com.idealo.config.DateProvider;
 import com.idealo.domain.dto.ItemDto;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,18 +15,21 @@ public class SpecialDatePricingRule implements PricingRule {
     private final double specialPrice;
     private final int discountPercentage;
     private final List<String> specialDates;
+    private final int quantity;
+    private final DateProvider dateProvider;
+
     @Override
-    public double calculateTotal(ItemDto item) {
+    public double calculateTotal(ItemDto cartItem) {
         if (isSpecialDate()) {
             double discount = (discountPercentage / 100.0) * specialPrice;
-            return (specialPrice - discount) * item.getQuantity();
+            return (specialPrice - discount) * quantity;
         }
 
-        return specialPrice * item.getQuantity();
+        return specialPrice * quantity;
     }
 
     private boolean isSpecialDate() {
-        LocalDate today = LocalDate.now();
+        LocalDate today = dateProvider.getCurrentDate();
         return specialDates != null && specialDates.stream()
                 .map(LocalDate::parse)
                 .anyMatch(today::isEqual);

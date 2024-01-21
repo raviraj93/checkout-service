@@ -4,5 +4,5 @@ import com.idealo.domain.dto.ItemDto;
 
 public interface PricingRule {
 
-    double calculateTotal(ItemDto item);
+    double calculateTotal(ItemDto cartItem);
 }

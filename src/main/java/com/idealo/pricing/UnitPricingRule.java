@@ -1,15 +1,14 @@
 package com.idealo.pricing;
 
 import com.idealo.domain.dto.ItemDto;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.stereotype.Component;
 
 @Data
-@Component
+@AllArgsConstructor
 public class UnitPricingRule implements PricingRule {
-
     @Override
-    public double calculateTotal(ItemDto item) {
-        return item.getQuantity() * item.getPrice();
+    public double calculateTotal(ItemDto cartItem) {
+        return cartItem.getQuantity() * cartItem.getPrice();
     }
 }

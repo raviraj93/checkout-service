@@ -13,6 +13,8 @@ public class PricingRuleEntity {
     private String id;
     private String name;
     private Character itemName;
+    private double unitPrice;
+    private int quantity;
     private Integer specialQuantity;
     private Double specialPrice;
     private Integer discountPercentage;

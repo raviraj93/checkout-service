@@ -16,19 +16,21 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
 @Service
 public class ItemServiceImpl implements ItemService {
 
-    private final ItemRepository itemRepository;
     private final PricingRuleProvider pricingRuleProvider;
     private final List<Character> scannedItems;
+    private final ItemRepository itemRepository;
 
     @Autowired
-    public ItemServiceImpl(List<RuleConfiguration> pricingRules,
-                           ItemRepository itemRepository) {
+    public ItemServiceImpl(List<RuleConfiguration> pricingRules, ItemRepository itemRepository) {
         this.pricingRuleProvider = new PricingRuleProvider(pricingRules);
         this.scannedItems = new ArrayList<>();
         this.itemRepository = itemRepository;
@@ -47,22 +49,23 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public double total(List<RuleConfiguration> pricingRules) {
-        return scannedItems.stream()
-                .map(item -> calculateItemTotal(item, pricingRules))
-                .reduce(0.0, Double::sum);
+        Map<Character, Long> itemQuantities = scannedItems.stream()
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
+        return itemQuantities.entrySet().stream()
+                .mapToDouble(entry -> calculateItemTotal(entry.getKey(), entry.getValue(), pricingRules))
+                .sum();
     }
 
 
-    private double calculateItemTotal(char item, List<RuleConfiguration> pricingRules) {
+    private double calculateItemTotal(char item, long quantity, List<RuleConfiguration> pricingRules) {
         PricingRule pricingRule = (pricingRules != null && !pricingRules.isEmpty())
                 ? getPricingRuleFromList(item, pricingRules)
                 : pricingRuleProvider.getPricingCalculator(item);
 
-        return pricingRule.calculateTotal(findItemByName(item));
-    }
-
-    private ItemDto findItemByName(Character name) {
-        return ItemMapper.toDto(itemRepository.findByName(name));
+        ItemDto itemDto = ItemMapper.toDto(itemRepository.findByName(item));
+        itemDto.setQuantity((int) quantity);
+        return pricingRule.calculateTotal(itemDto);
     }
 
     private PricingRule getPricingRuleFromList(Character item, List<RuleConfiguration> pricingRules) {

@@ -10,6 +10,8 @@ import java.util.List;
 public class RuleConfiguration {
     private String name;
     private char itemName;
+    private double unitPrice;
+    private int quantity;
     private int specialQuantity;
     private double specialPrice;
     private int discountPercentage;
