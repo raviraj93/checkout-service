@@ -35,7 +35,7 @@ class CheckoutController {
     }
 
     @RequestMapping(
-            method = RequestMethod.POST,
+            method = RequestMethod.GET,
             path = "/total",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE

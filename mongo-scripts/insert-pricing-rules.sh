@@ -1,5 +1,7 @@
 #!/bin/bash
 
+mongo mongodb://localhost:27017/idealo --eval 'db.pricing_rules.drop()'
+
 # Your logic to insert pricing rules
 mongo mongodb://localhost:27017/idealo --eval 'db.pricing_rules.insertMany([
                                                    // Quantity Discount Rules

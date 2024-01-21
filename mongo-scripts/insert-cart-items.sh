@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # Your logic to insert cart items
+mongo mongodb://localhost:27017/idealo --eval 'db.items.drop()'
+
 mongo mongodb://localhost:27017/idealo --eval 'db.items.insertMany([
                                                    {
                                                        name: "A",
