@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -52,9 +53,11 @@ public class ItemServiceImpl implements ItemService {
         Map<Character, Long> itemQuantities = scannedItems.stream()
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 
-        return itemQuantities.entrySet().stream()
+        double sum = itemQuantities.entrySet().stream()
                 .mapToDouble(entry -> calculateItemTotal(entry.getKey(), entry.getValue(), pricingRules))
                 .sum();
+        scannedItems.clear();
+        return sum;
     }
 
 
@@ -69,10 +72,21 @@ public class ItemServiceImpl implements ItemService {
     }
 
     private PricingRule getPricingRuleFromList(Character item, List<RuleConfiguration> pricingRules) {
-        return pricingRules.stream()
-                .filter(rule -> rule.getItemName() == (item))
+        Optional<PricingRule> specialDateRule = pricingRules.stream()
+                .filter(rule -> rule.getItemName() == item && rule.getName().equals("SpecialDatePricingRule"))
                 .findFirst()
-                .map(pricingRuleProvider::createPricingRule)
-                .orElseGet(() -> pricingRuleProvider.getPricingCalculator(item));
+                .map(pricingRuleProvider::createPricingRule);
+
+        if (specialDateRule.isPresent()) {
+            return specialDateRule.get();
+        }
+
+        Optional<PricingRule> quantityDiscountRule = pricingRules.stream()
+                .filter(rule -> rule.getItemName() == item && rule.getName().equals("QuantityDiscountRule"))
+                .findFirst()
+                .map(pricingRuleProvider::createPricingRule);
+
+        return quantityDiscountRule.orElseGet(() -> pricingRuleProvider.getPricingCalculator(item));
     }
+
 }

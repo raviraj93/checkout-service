@@ -103,7 +103,7 @@ class ItemServiceImplTest {
     }
 
     private List<RuleConfiguration> getUnitPricingRules(){
-        return List.of(new RuleConfiguration("UnitPricingRule", 'A', 50, 1, 0, 0, 0, null));
+        return List.of(new RuleConfiguration("UnitPricingRule", 'A', 50.0, 1, 0, null, null, null));
     }
 
     private Item getItem(Character name){

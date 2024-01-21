@@ -9,12 +9,12 @@ import java.util.List;
 @AllArgsConstructor
 public class RuleConfiguration {
     private String name;
-    private char itemName;
-    private double unitPrice;
-    private int quantity;
-    private int specialQuantity;
-    private double specialPrice;
-    private int discountPercentage;
+    private Character itemName;
+    private Double unitPrice ;
+    private Integer quantity;
+    private Integer specialQuantity ;
+    private Double specialPrice ;
+    private Integer discountPercentage ;
     private List<String> specialDates;
 }
 

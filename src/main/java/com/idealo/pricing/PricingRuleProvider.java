@@ -24,14 +24,22 @@ public class PricingRuleProvider {
     }
     public PricingRule createPricingRule(RuleConfiguration rule) {
         return switch (rule.getName()) {
+            case "QuantityDiscountRule" -> new QuantityDiscountRule(
+                    rule.getUnitPrice() != null ? rule.getUnitPrice(): 0,
+                    rule.getSpecialQuantity()!=  null? rule.getSpecialQuantity() : 0,
+                    rule.getSpecialPrice() != null ? rule.getSpecialPrice() : 0.0
+            );
 
-            case "QuantityDiscountRule" -> new QuantityDiscountRule(rule.getUnitPrice(),
-                    rule.getSpecialQuantity(), rule.getSpecialPrice(), rule.getQuantity());
-
-            case "SpecialDatePricingRule" -> new SpecialDatePricingRule(rule.getSpecialPrice(),
-                    rule.getDiscountPercentage(), rule.getSpecialDates(), rule.getQuantity(), new DateProviderImpl());
+            case "SpecialDatePricingRule" -> new SpecialDatePricingRule(
+                    rule.getSpecialPrice() != null ? rule.getSpecialPrice() : 0.0,
+                    rule.getDiscountPercentage()!= null ? rule.getDiscountPercentage() : 0,
+                    rule.getSpecialDates(),
+                    rule.getQuantity()!= null ? rule.getQuantity(): 0,
+                    new DateProviderImpl()
+            );
 
             default -> new UnitPricingRule();
         };
     }
+
 }

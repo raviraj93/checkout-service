@@ -9,8 +9,6 @@ public class QuantityDiscountRule implements PricingRule {
     private final double unitPrice;
     private final int specialQuantity;
     private final double specialPrice;
-    private final int quantity;
-
     @Override
     public double calculateTotal(ItemDto cartItem) {
         int quantity = cartItem.getQuantity();
