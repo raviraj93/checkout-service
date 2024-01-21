@@ -1,9 +1,10 @@
-package com.idealo.service.impl;
+package com.idealo.expectedtest;
 
 import com.idealo.config.DateProvider;
 import com.idealo.domain.entity.Item;
 import com.idealo.domain.dto.RuleConfiguration;
 import com.idealo.repository.ItemRepository;
+import com.idealo.service.impl.ItemServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
