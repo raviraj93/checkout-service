@@ -1,7 +1,6 @@
 package com.idealo.service;
 
-import com.idealo.domain.dto.ItemDto;
-import com.idealo.pricing.RuleConfiguration;
+import com.idealo.domain.dto.RuleConfiguration;
 
 import java.util.List;
 

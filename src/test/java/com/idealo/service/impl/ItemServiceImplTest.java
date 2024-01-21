@@ -3,7 +3,7 @@ package com.idealo.service.impl;
 import com.idealo.config.DateProvider;
 import com.idealo.domain.entity.Item;
 import com.idealo.pricing.PricingRuleProvider;
-import com.idealo.pricing.RuleConfiguration;
+import com.idealo.domain.dto.RuleConfiguration;
 import com.idealo.pricing.SpecialDatePricingRule;
 import com.idealo.repository.ItemRepository;
 import org.junit.jupiter.api.BeforeEach;

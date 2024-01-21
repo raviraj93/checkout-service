@@ -1,7 +1,7 @@
 package com.idealo.mapper;
 
 import com.idealo.domain.entity.PricingRuleEntity;
-import com.idealo.pricing.RuleConfiguration;
+import com.idealo.domain.dto.RuleConfiguration;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

@@ -1,27 +1,21 @@
 package com.idealo.service.impl;
 
 import com.idealo.domain.dto.ItemDto;
-import com.idealo.domain.entity.Item;
 import com.idealo.mapper.ItemMapper;
 import com.idealo.pricing.PricingRule;
 import com.idealo.pricing.PricingRuleProvider;
-import com.idealo.pricing.RuleConfiguration;
+import com.idealo.domain.dto.RuleConfiguration;
 import com.idealo.repository.ItemRepository;
 import com.idealo.service.ItemService;
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.toList;
 
 @Service
 public class ItemServiceImpl implements ItemService {

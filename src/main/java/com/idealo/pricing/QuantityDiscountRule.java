@@ -15,6 +15,9 @@ public class QuantityDiscountRule implements PricingRule {
         int discountedSets = quantity / specialQuantity;
         int remainingItems = quantity % specialQuantity;
 
-        return discountedSets * specialPrice + remainingItems * unitPrice;
+        double discountedSetsCost = discountedSets * specialPrice;
+        double remainingItemsCost = remainingItems * unitPrice;
+
+        return discountedSetsCost + remainingItemsCost;
     }
 }

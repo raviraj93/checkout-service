@@ -1,5 +1,6 @@
 package com.idealo.pricing;
 
+import com.idealo.domain.dto.RuleConfiguration;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 

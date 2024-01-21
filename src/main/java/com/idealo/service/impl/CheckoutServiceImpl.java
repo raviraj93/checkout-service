@@ -1,6 +1,6 @@
 package com.idealo.service.impl;
 
-import com.idealo.pricing.RuleConfiguration;
+import com.idealo.domain.dto.RuleConfiguration;
 import com.idealo.service.CheckoutService;
 import com.idealo.service.ItemService;
 import org.springframework.stereotype.Service;

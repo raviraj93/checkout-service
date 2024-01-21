@@ -1,4 +1,4 @@
-package com.idealo.pricing;
+package com.idealo.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -12,6 +12,7 @@
 ### Further Enhancements
 - Currently we have only inserted 5 skus and 3 different rules in the collections.
 - We can expose endpoints to insert new rules on runtime.
+- To prevent clearing of the total value, we can start maintaining the basket entity and start associating users with it.
 
 
 ### Programming language, technologies and libraries

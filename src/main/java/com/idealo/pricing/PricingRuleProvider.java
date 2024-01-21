@@ -1,6 +1,7 @@
 package com.idealo.pricing;
 
 import com.idealo.config.DateProviderImpl;
+import com.idealo.domain.dto.RuleConfiguration;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Component;

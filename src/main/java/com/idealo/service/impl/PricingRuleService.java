@@ -1,8 +1,7 @@
 package com.idealo.service.impl;
 
-import com.idealo.domain.entity.PricingRuleEntity;
 import com.idealo.mapper.PricingRuleMapper;
-import com.idealo.pricing.RuleConfiguration;
+import com.idealo.domain.dto.RuleConfiguration;
 import com.idealo.repository.PricingRuleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
