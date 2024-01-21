@@ -4,7 +4,7 @@
 - Simple application which calculates the total price of the scanned items.
 - It exposes two endpoint, one to scan items and one to get total price.
 
-### Assumptions
+### Must Know
 - It clears the scanned items list once the total value is fetched.
 - Uses the docker mongo service to store the items and pricing rules.
 - Storing pricing rules gives the flexibility to dynamically reconfigure the rules and modify also.
@@ -40,4 +40,4 @@ localhost:8080/v1/api/cart/scan?sku=B
 ```
 2. To get the total of the cart. GET endpoint
 ```
-localhost:8080/v1/api/cart/total'
+localhost:8080/v1/api/cart/total
