@@ -5,11 +5,7 @@ import com.idealo.domain.entity.Item;
 import org.springframework.stereotype.Component;
 
 @Component
-public final class ItemMapper {
-    private ItemMapper() {
-        throw new UnsupportedOperationException();
-    }
-
+public class ItemMapper {
     public static ItemDto toDto(Item item) {
         return ItemDto.builder()
                 .name(item.getName())

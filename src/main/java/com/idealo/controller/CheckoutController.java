@@ -30,8 +30,8 @@ class CheckoutController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public void scanItem(@RequestParam char sku) {
-        checkoutService.scan(sku);
+    public void scanItem(@RequestParam String sku) {
+        checkoutService.scan(sku.charAt(0));
     }
 
     @RequestMapping(
