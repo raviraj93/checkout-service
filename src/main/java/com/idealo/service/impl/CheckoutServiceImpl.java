@@ -1,33 +1,29 @@
 package com.idealo.service.impl;
 
-import com.idealo.domain.dto.BasketDto;
-import com.idealo.domain.dto.ItemDto;
+import com.idealo.pricing.RuleConfiguration;
 import com.idealo.service.CheckoutService;
 import com.idealo.service.ItemService;
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.idealo.pricingcalculator.PricingCalculatorProvider.getPricingCalculator;
-
 @Service
-@AllArgsConstructor
 public class CheckoutServiceImpl implements CheckoutService {
-    private ItemService itemService;
-    @Override
-    public BasketDto scan(List<String> items) {
-        List<ItemDto> itemsDto = itemService.getItems(items);
-        return BasketDto.builder()
-                .items(itemsDto)
-                .total(getTotal(itemsDto))
-                .build();
+    private final ItemService itemService;
+    private final PricingRuleService pricingRuleService;
+
+    public CheckoutServiceImpl(ItemService itemService,
+                               PricingRuleService pricingRuleService) {
+        this.itemService = itemService;
+        this.pricingRuleService = pricingRuleService;
     }
 
-    private double getTotal(List<ItemDto> itemDtoList) {
-        return itemDtoList
-                .stream()
-                .mapToDouble(item -> getPricingCalculator(item).calculateTotal(item))
-                .sum();
+    public void scan(char item) {
+        itemService.scan(item);
+    }
+
+    public double total() {
+        List<RuleConfiguration> pricingRules = pricingRuleService.getAllPricingRules();
+        return itemService.total(pricingRules);
     }
 }

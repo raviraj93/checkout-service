@@ -1,14 +1,14 @@
 package com.idealo.repository;
 
 import com.idealo.domain.entity.Item;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public interface ItemRepository extends CrudRepository<Item, String> {
+@Repository
+public interface ItemRepository extends MongoRepository<Item, String> {
 
-    List<Item> findByNameIn(List<String> name);
-
+    Item findByName(Character name);
 }

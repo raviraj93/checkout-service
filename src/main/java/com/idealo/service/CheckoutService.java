@@ -6,5 +6,6 @@ import com.idealo.domain.entity.Basket;
 import java.util.List;
 
 public interface CheckoutService {
-    BasketDto scan(List<String> items);
+    void scan(char item);
+    double total();
 }

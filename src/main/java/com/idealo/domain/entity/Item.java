@@ -1,21 +1,23 @@
 package com.idealo.domain.entity;
 
-import jakarta.annotation.Nullable;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @Builder
-public final class Item {
+@AllArgsConstructor
+@Document(collection = "items")
+public class Item {
+    @Id
+    private String id;
     @NonNull
-    private final String name;
+    private Character name;
     @NonNull
-    private final Integer quantity;
+    private Integer quantity;
     @NonNull
-    private final Double price;
-    @Nullable
-    private final Integer offerQty;
-    @Nullable
-    private final Double offerPrice;
+    private  Double price;
 }

@@ -1,8 +1,8 @@
-package com.idealo.pricingcalculator;
+package com.idealo.pricing;
 
 import com.idealo.domain.dto.ItemDto;
 
-public interface PricingCalculator {
+public interface PricingRule {
 
     double calculateTotal(ItemDto item);
 }

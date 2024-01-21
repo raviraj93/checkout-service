@@ -9,6 +9,7 @@ import java.util.List;
 @Data
 @Builder
 public class BasketDto {
+    private String id;
     @NotNull
     private List<ItemDto> items;
 

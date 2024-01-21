@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: checkout-service
+  data:
+    mongodb:
+      database: "idealo"
+      uri: mongodb://localhost:27017/idealo
+
+server:
+  port: 8080
